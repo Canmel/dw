@@ -12,7 +12,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => DesignModule
+        redirectTo: '/main/design',
+        pathMatch: 'full'
       }, {
         path: 'user',
         loadChildren: () => UserModule

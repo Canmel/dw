@@ -25,7 +25,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/plugs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"
+            ]
           },
           "configurations": {
             "production": {

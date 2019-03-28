@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -8,7 +7,8 @@ import * as $ from 'jquery';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
