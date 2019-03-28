@@ -7,7 +7,7 @@ import {PageNotFoundPageComponent} from './page-not-found-page/page-not-found-pa
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/main',
+    redirectTo: '/main/design',
     pathMatch: 'full'
   },
   {

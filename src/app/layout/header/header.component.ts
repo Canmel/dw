@@ -10,26 +10,55 @@ import * as $ from 'jquery';
 export class HeaderComponent extends MainComponent implements OnInit {
 
 
+  browseWidth;
+  browseHeight;
 
   ngOnInit() {
+    this.ready();
   }
 
   ready() {
-
+    this.browseHeight = $(window).height();
+    this.browseWidth = $(window).width();
+    window.addEventListener('resize', () => {
+      this.resizeBodyWidth();
+      this.resizeBodyHeight();
+    }, false);
   }
 
-  clickHideUserMenuCallback(event){
-    console.log(event);
-    let toggleTag = true;
-    // this.toggleTag;
-    if (toggleTag) {
-      toggleTag = false;
-      const stepLi = $(event.target).parent();
-      stepLi.find('.a-w-sel').slideToggle(0, function () {
-        toggleTag = true;
-      });
-      $('.a-w-sel').not(stepLi.find('.a-w-sel')).hide();
+  clickHideUserMenuCallback(event) {
+    const stepLi = $(event.target).parent();
+    stepLi.parent().find('.a-w-sel').slideToggle(0, function () {
+      $(this).attr('show', 'true');
+    });
+  }
+
+
+  resizeBodyWidth() {
+    this.browseWidth = $(window).width();
+    if (this.browseWidth >= 1120) {
+      $('.bodyCenter').width(this.browseWidth - 160);
+    } else {
+      $('.bodyCenter').width(960);
     }
+  }
+
+  resizeBodyHeight() {
+    this.browseHeight = $(window).height();
+    const autoCHeight = this.browseHeight - 230;
+    $('.autoContentHeight').height(autoCHeight);
+    $('#autoIframeHeight').height(autoCHeight - 5);
+  }
+
+
+  refreshAutoCode(codeImgId) {
+    const ctx = $('#ctx').val();
+    $('#' + codeImgId).attr('src', ctx + '/jcaptcha.action');
+  }
+
+  currentMenu(menuId) {
+    $('.dw-menu-a').removeClass('active');
+    $('#' + menuId).addClass('active');
   }
 }
 
