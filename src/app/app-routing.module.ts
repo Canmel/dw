@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginModule} from './login/login.module';
 import {MainModule} from './main/main.module';
 import {PageNotFoundPageComponent} from './page-not-found-page/page-not-found-page.component';
+import {DesignerModule} from './designer/designer.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,9 @@ const routes: Routes = [
   }, {
     path: 'main',
     loadChildren: () => MainModule
+  }, {
+    path: 'designer',
+    loadChildren: () => DesignerModule
   }, {
     path: '**',
     loadChildren: () => PageNotFoundPageComponent

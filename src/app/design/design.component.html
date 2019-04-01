@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/assets/js/plugs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="/node_modules/ng-drag-drop/style.css">
 <div id="dwBody" style="margin-top: 15px;">
   <div id="dwBodyContent" class="bodyCenter" style="width: 88%;">
     <div id="dwBodyUser">
@@ -7,8 +7,7 @@
           <div style="padding: 25px 45px;overflow: auto;padding-top: 20px;">
             <div style="padding: 5px;color: #666565;letter-spacing: 2px;">
               所有问卷&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a id="surveyAdd-a" (click)="newDesign($event)"
-                 style="outline: none;text-decoration: none; cursor: pointer;"><i class="fa fa-plus " aria-hidden="true"></i>&nbsp;新建问卷</a>
+              <button type="button" id="surveyAdd-a" (click)="newDesign(template)" class="btn btn-primary"><i class="fa fa-plus " aria-hidden="true"></i>新建问卷</button>
             </div>
 
             <form action="/design/my-survey.action" method="post">
@@ -157,3 +156,59 @@
     </div>
   </div>
 </div>
+
+
+
+-----------------------------------------------------------------
+<h3>Transfer Data via Drag Drop</h3>
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="list-group">
+      <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}</li>
+    </ul>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
+      <div class="panel-heading">Drop Items here</div>
+      <div class="panel-body">
+        <li *ngFor="let item of droppedItems" class="list-group-item">{{item.name}}</li>
+      </div>
+    </div>
+  </div>
+</div>
+-----------------------------------------------------------------
+
+<h3>Transfer Data via Drag Drop</h3>
+<ul>
+  <li draggable *ngFor="let item of items" [dragData]="item">{{item.name}}</li>
+  <li draggable>Tea</li>
+  <li draggable>Milk</li>
+</ul>
+
+<div droppable (onDrop)="onItemDrop($event)">
+  <p>Drop items here</p>
+  <li draggable *ngFor="let item of droppedItems">{{item.name || 1}}</li>
+</div>
+
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">新建问卷、表单</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" id="newDesignTempalte">
+    <div id="myDialogRoot">
+      <div class='dialogMessage' style='padding-top:40px;margin-left:20px;padding-bottom:0px;'>
+        <div class="row"><span class="col-3">问卷标题：</span><input id='surTitleTemp' class="col-9" type='text' style='padding:3px;width:75%;color:rgb(14, 136, 158);' [(ngModel)]="surTitleTemp"></div>
+        <div style="text-align: right; padding-right: 4rem;padding-top: 2rem;">
+          <button class="btn btn-success" (click)="newDesignTempalteConfirm()">确认新建</button>
+          <button class="btn btn-default" (click)="newDesignTempalteCancel()">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

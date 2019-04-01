@@ -514,7 +514,7 @@ a.centerTabbarBtn:hover{
 	filter:alpha(opacity=80); /*IE滤镜，透明度50%*/
 	-moz-opacity:0.8; /*Firefox私有，透明度50%*/
 	opacity:0.8;/*其他，透明度50%*/
-	width: 800px;
+	/*width: 800px;*/
 	cursor: move! important;
 }
 .sortActiveclass{
