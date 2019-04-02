@@ -29,6 +29,7 @@ export class DesignComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   newDesign(template) {
@@ -43,6 +44,6 @@ export class DesignComponent implements OnInit {
   }
 
   newDesignTempalteCancel() {
-      this.modalService.hide(1);
+    this.modalService.hide(1);
   }
 }

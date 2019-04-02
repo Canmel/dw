@@ -157,42 +157,6 @@
   </div>
 </div>
 
-
-
------------------------------------------------------------------
-<h3>Transfer Data via Drag Drop</h3>
-<div class="row">
-  <div class="col-sm-3">
-    <ul class="list-group">
-      <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}</li>
-    </ul>
-  </div>
-
-  <div class="col-sm-3">
-    <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
-      <div class="panel-heading">Drop Items here</div>
-      <div class="panel-body">
-        <li *ngFor="let item of droppedItems" class="list-group-item">{{item.name}}</li>
-      </div>
-    </div>
-  </div>
-</div>
------------------------------------------------------------------
-
-<h3>Transfer Data via Drag Drop</h3>
-<ul>
-  <li draggable *ngFor="let item of items" [dragData]="item">{{item.name}}</li>
-  <li draggable>Tea</li>
-  <li draggable>Milk</li>
-</ul>
-
-<div droppable (onDrop)="onItemDrop($event)">
-  <p>Drop items here</p>
-  <li draggable *ngFor="let item of droppedItems">{{item.name || 1}}</li>
-</div>
-
-
-
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">新建问卷、表单</h4>
@@ -212,3 +176,4 @@
     </div>
   </div>
 </ng-template>
+
