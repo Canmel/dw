@@ -643,7 +643,7 @@ textarea{
 	font-family: "微软雅黑";
 	overflow: auto;
 	max-width: 720px;
-	width:680px;
+	width:70%;
 	min-height: 30px;
 }
 .editAble{
@@ -860,7 +860,7 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 	padding-left: 10px;
 	border-left: 1px solid transparent;
 	min-height: 100px;
-	width: 700px;
+	/*width: 700px;*/
 }
 .surveyQuItemBody.hover .surveyQuItemContent{
  	border-left: 1px solid #DDE1E7;

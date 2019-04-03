@@ -1,6 +1,6 @@
 import {DwSubject} from './dw-subject';
 
-export class DwMarital extends DwSubject{
+export class DwMarital extends DwSubject {
 
   options: Array<any>;
 

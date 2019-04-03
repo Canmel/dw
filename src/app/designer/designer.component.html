@@ -141,7 +141,7 @@
       <ul id="dwSurveyQuContentAppUl" class="ui-sortable" droppable (onDrop)="dropItemsHandler($event)">
         <!-- 题目内容 -->
         <ng-container #vcRef></ng-container>
-        <li *ngFor="let item of dwSurvey" class="li_surveyQuItemBody" style="display: list-item;"
+        <li *ngFor="let item of dwSurvey index as i" class="li_surveyQuItemBody" style="display: list-item;"
             (mouseenter)="showTooltip($event)" (mouseleave)="hideTooltip($event)">
           <div class="surveyQuItemBody" *ngIf="itemInstanceofDwSubject(item, 'DwRadio')">
             <div class="initLine"></div>
@@ -184,25 +184,25 @@
               </div>
               <div class="surveyQuItemRightTools">
                 <ul class="surveyQuItemRightToolsUl">
-                  <li class="questionUp ui-draggable">
+                  <li class="questionUp ui-draggable" (click)="questionToUp($event, item)">
                     <div class="dwQuIcon"></div>
                   </li>
-                  <li class="questionDown ui-draggable">
+                  <li class="questionDown ui-draggable" (click)="questionToDown($event, item)">
                     <div class="dwQuIcon"></div>
                   </li>
                 </ul>
               </div>
               <div class="surveyQuItemContent">
                 <div class="quCoTitle">
-                  <div class="quCoNum">1、</div>
+                  <div class="quCoNum">{{i + 1}}、</div>
                   <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
                   <input type="hidden" name="quTitleSaveTag" value="0">
                 </div>
                 <div class="quCoItem">
                   <ul>
                     <li class="quCoItemUlLi ui-draggable" *ngFor="let option of item.options">
-                      <input type="radio"><label class="editAble quCoOptionEdit"
-                                                 (click)="quCoOptionEditHandler($event)">{{option}}</label>
+                      <input type="radio" name="{{i}}name"><label class="editAble quCoOptionEdit"
+                                                 (click)="quCoOptionEditHandler($event, item, option)">{{option}}</label>
                       <div class="quItemInputCase">
                         <input type="hidden" name="quItemId" value="">
                         <input type="hidden" name="quItemSaveTag" value="0">
@@ -268,44 +268,24 @@
               </div>
               <div class="surveyQuItemRightTools">
                 <ul class="surveyQuItemRightToolsUl">
-                  <li class="questionUp ui-draggable">
+                  <li class="questionUp ui-draggable" (click)="questionToUp($event, item)">
                     <div class="dwQuIcon"></div>
                   </li>
-                  <li class="questionDown ui-draggable">
+                  <li class="questionDown ui-draggable" (click)="questionToDown($event, item)">
                     <div class="dwQuIcon"></div>
                   </li>
                 </ul>
               </div>
               <div class="surveyQuItemContent">
                 <div class="quCoTitle">
-                  <div class="quCoNum">1、</div>
-                  <div class="editAble quCoTitleEdit">题标题？</div>
+                  <div class="quCoNum">{{i + 1}}、</div>
+                  <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
                   <input type="hidden" name="quTitleSaveTag" value="0">
                 </div>
                 <div class="quCoItem">
                   <ul>
-                    <li class="quCoItemUlLi ui-draggable">
-                      <input type="checkbox"><label class="editAble quCoOptionEdit">选项1</label>
-                      <div class="quItemInputCase">
-                        <input type="hidden" name="quItemId" value="">
-                        <input type="hidden" name="quItemSaveTag" value="0">
-                        <input type="hidden" name="isNote" value="0">
-                        <input type="hidden" name="checkType" value="NO">
-                        <input type="hidden" name="isRequiredFill" value="0">
-                      </div>
-                    </li>
-                    <li class="quCoItemUlLi ui-draggable">
-                      <input type="checkbox"><label class="editAble quCoOptionEdit">选项2</label>
-                      <div class="quItemInputCase">
-                        <input type="hidden" name="quItemId" value="">
-                        <input type="hidden" name="quItemSaveTag" value="0">
-                        <input type="hidden" name="isNote" value="0">
-                        <input type="hidden" name="checkType" value="NO">
-                        <input type="hidden" name="isRequiredFill" value="0">
-                      </div>
-                    </li>
-                    <li class="quCoItemUlLi ui-draggable">
-                      <input type="checkbox"><label class="editAble quCoOptionEdit">选项3</label>
+                    <li class="quCoItemUlLi ui-draggable" *ngFor="let option of item.options">
+                      <input type="checkbox"><label class="editAble quCoOptionEdit">{{option}}</label>
                       <div class="quItemInputCase">
                         <input type="hidden" name="quItemId" value="">
                         <input type="hidden" name="quItemSaveTag" value="0">
@@ -1436,7 +1416,7 @@
 
 <!--逻辑值保存模板-->
 
-<div id="dwCommonEditRoot" class="quEdit" style="display: none; top: 340.015px; left: 148.922px;">
+<div id="dwCommonEditRoot" class="quEdit" style="display: none; top: 340.015px; left: 148.922px;" *ngIf="dwCommonEditRoot">
   <div class="dwCommonEdit" style="width: 600px;">
     <ul class="dwComEditMenuUl" style="display: none;">
       <li><a href="javascript:;" class="SeniorEdit"><i class="menu_edit2_icon"></i>高级编辑</a></li>
@@ -1455,6 +1435,7 @@
       </li>
     </ul>
     <div class="dwComEditMenuBtn"></div>
-    <div id="dwComEditContent" contenteditable="true" (click)="dwComEditContentHandler($event)">题标题？</div>
+    <div id="dwComEditContent" contenteditable="true" (click)="dwComEditContentHandler($event)"
+      (blur)="dwComEditContentBlurHandler()">{{dwCommonEditRoot.quValue}}</div>
   </div>
 </div>

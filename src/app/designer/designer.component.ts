@@ -15,6 +15,9 @@ import {DwSalary} from '../entity/dw-salary';
 import {DwParagraph} from '../entity/dw-paragraph';
 import {DwPage} from '../entity/dw-page';
 import {DwSubject} from '../entity/dw-subject';
+import {DwCommonEditRoot} from '../entity/dwCommonEditRoot';
+import {DwCommonType} from '../enum/dw-common-type.enum';
+import {ArrayUtils} from '../utils/ArrayUtils';
 
 @Component({
   selector: 'app-designer',
@@ -55,16 +58,19 @@ export class DesignerComponent implements OnInit {
 
   @ViewChild('pageDwQuTypeModel') pageDwQuTypeModel: TemplateRef<any>;
 
-  dwSurvey = [];
+  dwSurvey: Array<DwSubject>;
 
-  selectedSubject: DwSubject;
+  currentSubject: DwSubject;
+
+  dwCommonEditRoot: DwCommonEditRoot;
 
   constructor(private modalService: BsModalService) {
     $(document).click(function () {
       $('#dwCommonEditRoot').hide();
       event.stopPropagation();
     });
-    this.selectedSubject = null;
+    this.dwSurvey = [];
+    this.dwCommonEditRoot = new DwCommonEditRoot();
   }
 
   ngOnInit() {
@@ -76,8 +82,8 @@ export class DesignerComponent implements OnInit {
 
   itemInstanceofDwSubject(ty: any, className) {
     return ty.constructor.name === className;
-
   }
+
 
   dropItemsHandler(e: any) {
     console.log(e);
@@ -129,9 +135,9 @@ export class DesignerComponent implements OnInit {
 
   // 问题标题编辑回调
   quCoTitleEditHandler(event, subject: DwSubject) {
-    console.log(event);
-    console.log(subject);
-    this.selectedSubject = subject;
+    this.currentSubject = subject;
+    this.dwCommonEditRoot.quValue = subject.title;
+    this.dwCommonEditRoot.type = DwCommonType.TITLE;
     this.rePositionModal(event.target);
     $('#dwCommonEditRoot').show();
     $('#dwCommonEditRoot').removeClass().addClass('quEdit');
@@ -140,8 +146,21 @@ export class DesignerComponent implements OnInit {
   }
 
   // 问题选项编辑回调
-  quCoOptionEditHandler(event) {
+  quCoOptionEditHandler(event, subject: DwSubject, option) {
+    console.log(option);
+    console.log(subject);
     this.rePositionModal(event.target);
+    this.currentSubject = subject;
+    this.dwCommonEditRoot.quValue = option;
+    this.dwCommonEditRoot.type = DwCommonType.OPTION;
+    if (subject.options) {
+      const i = subject.options.indexOf(option);
+      this.dwCommonEditRoot.index = i;
+    }
+    const options = this.currentSubject['options'];
+    if (options) {
+      console.log(options);
+    }
     $('#dwCommonEditRoot').show();
     $('#dwCommonEditRoot').removeClass().addClass('quOptionEdit');
     event.stopPropagation();
@@ -150,6 +169,40 @@ export class DesignerComponent implements OnInit {
 
   dwComEditContentHandler(event) {
     event.stopPropagation();
+  }
+
+  dwComEditContentBlurHandler() {
+    this.dwCommonEditRoot.quValue = $('#dwComEditContent').html();
+    if (this.dwCommonEditRoot.type === DwCommonType.TITLE) {
+      this.currentSubject.title = this.dwCommonEditRoot.quValue;
+    } else if (this.dwCommonEditRoot.type === DwCommonType.OPTION) {
+      this.currentSubject.options[this.dwCommonEditRoot.index] = this.dwCommonEditRoot.quValue;
+    }
+
+
+    // this.dwSurvey[0]
+  }
+
+  // 问题上移动
+  questionToUp(event, item) {
+    console.log(event, item);
+    if (ArrayUtils.isFirst(this.dwSurvey, item)) {
+      console.log('这是最上面的');
+      return null;
+    }
+    console.log('不是最上面的');
+    const index = this.dwSurvey.indexOf(item);
+    ArrayUtils.swapArray(this.dwSurvey, index, index - 1);
+  }
+
+  // 问题下移动
+  questionToDown(event, item) {
+    if (ArrayUtils.isLast(this.dwSurvey, item)) {
+      console.log('这是最下面的');
+      return null;
+    }
+    const index = this.dwSurvey.indexOf(item);
+    ArrayUtils.swapArray(this.dwSurvey, index, index + 1);
   }
 
   rePositionModal(target) {

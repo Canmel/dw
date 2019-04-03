@@ -5810,7 +5810,7 @@ Tick.prototype = {
 		}
 
 		// set properties for access in render method
-		tick.isFirst = isFirst;
+		ArrayUtils.isFirst = isFirst;
 		tick.isLast = isLast;
 
 		// get the string
