@@ -14,6 +14,7 @@ import {DwMarital} from '../entity/dw-marital';
 import {DwSalary} from '../entity/dw-salary';
 import {DwParagraph} from '../entity/dw-paragraph';
 import {DwPage} from '../entity/dw-page';
+import {DwSubject} from '../entity/dw-subject';
 
 @Component({
   selector: 'app-designer',
@@ -56,11 +57,14 @@ export class DesignerComponent implements OnInit {
 
   dwSurvey = [];
 
+  selectedSubject: DwSubject;
+
   constructor(private modalService: BsModalService) {
     $(document).click(function () {
       $('#dwCommonEditRoot').hide();
       event.stopPropagation();
     });
+    this.selectedSubject = null;
   }
 
   ngOnInit() {
@@ -106,21 +110,28 @@ export class DesignerComponent implements OnInit {
     }
   }
 
+  // 设置
   settingHandler(template) {
     this.modalRef = this.modalService.show(template);
   }
 
+  // 显示工具栏
   showTooltip(event) {
     $(event.target).find('div').eq(0).addClass('hover');
     event.stopPropagation();
   }
 
+  // 隐藏工具栏
   hideTooltip(event) {
     $(event.target).find('div').eq(0).removeClass('hover');
     event.stopPropagation();
   }
 
-  quCoTitleEditHandler(event) {
+  // 问题标题编辑回调
+  quCoTitleEditHandler(event, subject: DwSubject) {
+    console.log(event);
+    console.log(subject);
+    this.selectedSubject = subject;
     this.rePositionModal(event.target);
     $('#dwCommonEditRoot').show();
     $('#dwCommonEditRoot').removeClass().addClass('quEdit');
@@ -128,6 +139,7 @@ export class DesignerComponent implements OnInit {
     event.stopPropagation();
   }
 
+  // 问题选项编辑回调
   quCoOptionEditHandler(event) {
     this.rePositionModal(event.target);
     $('#dwCommonEditRoot').show();

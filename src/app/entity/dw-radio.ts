@@ -6,6 +6,6 @@ export class DwRadio extends DwSubject{
 
   constructor() {
     super();
-    this.options = ['选项1', '选项2'];
+    this.options = ['选项一', '选项二'];
   }
 }
