@@ -1,4 +1,5 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwPage extends DwSubject {
 
@@ -7,5 +8,6 @@ export class DwPage extends DwSubject {
   constructor() {
     super();
     this.subLineText = '下一页';
+    this.title = EntityProperties.DWPAGE;
   }
 }

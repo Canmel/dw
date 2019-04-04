@@ -7,7 +7,8 @@ export class ArrayUtils {
 
   static isLast(arr: Array<any>, item: any) {
     const index = arr.indexOf(item);
-    return index === arr.length;
+    console.log(index);
+    return index === arr.length - 1;
   }
 
   static swapArray(arr: Array<any>, index1: number, index2: number) {

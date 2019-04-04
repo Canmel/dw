@@ -124,12 +124,15 @@ export class DesignerComponent implements OnInit {
   // 显示工具栏
   showTooltip(event) {
     $(event.target).find('div').eq(0).addClass('hover');
+    $(event.target).find('.surveyQuItemBody').addClass('quDragBody');
+
     event.stopPropagation();
   }
 
   // 隐藏工具栏
   hideTooltip(event) {
     $(event.target).find('div').eq(0).removeClass('hover');
+    $(event.target).find('.surveyQuItemBody').removeClass('quDragBody');
     event.stopPropagation();
   }
 
@@ -141,26 +144,42 @@ export class DesignerComponent implements OnInit {
     this.rePositionModal(event.target);
     $('#dwCommonEditRoot').show();
     $('#dwCommonEditRoot').removeClass().addClass('quEdit');
+    $('.dwCommonEdit').css('width', $(event.target).width());
     // 阻止事件冒泡
+    console.log(this.dwSurvey);
     event.stopPropagation();
   }
 
   // 问题选项编辑回调
-  quCoOptionEditHandler(event, subject: DwSubject, option) {
+  quCoOptionEditHandler(event, subject: DwSubject, option: any, params: any) {
     console.log(option);
     console.log(subject);
     this.rePositionModal(event.target);
     this.currentSubject = subject;
-    this.dwCommonEditRoot.quValue = option;
     this.dwCommonEditRoot.type = DwCommonType.OPTION;
     if (subject.options) {
       const i = subject.options.indexOf(option);
       this.dwCommonEditRoot.index = i;
+      this.dwCommonEditRoot.quValue = option;
+    }
+    if(subject.quMFillblankAnswer) {
+      const i = subject.quMFillblankAnswer.indexOf(option);
+      this.dwCommonEditRoot.index = i;
+      this.dwCommonEditRoot.quValue = option[0];
     }
     const options = this.currentSubject['options'];
     if (options) {
       console.log(options);
     }
+    if (params && params.width) {
+      $('.dwCommonEdit').css('width', $(params.width).width());
+    } else {
+      $('.dwCommonEdit').css('width', 600);
+    }
+    if (params && params.type && params.type === 'MFILLBLANK') {
+      this.dwCommonEditRoot.type = DwCommonType.MFILLBLANK;
+    }
+
     $('#dwCommonEditRoot').show();
     $('#dwCommonEditRoot').removeClass().addClass('quOptionEdit');
     event.stopPropagation();
@@ -177,13 +196,14 @@ export class DesignerComponent implements OnInit {
       this.currentSubject.title = this.dwCommonEditRoot.quValue;
     } else if (this.dwCommonEditRoot.type === DwCommonType.OPTION) {
       this.currentSubject.options[this.dwCommonEditRoot.index] = this.dwCommonEditRoot.quValue;
+    } else if (this.dwCommonEditRoot.type === DwCommonType.MFILLBLANK) {
+      this.currentSubject.quMFillblankAnswer[this.dwCommonEditRoot.index][0] = this.dwCommonEditRoot.quValue;
     }
-
-
+    console.log(this.currentSubject);
     // this.dwSurvey[0]
   }
 
-  // 问题上移动
+  // 问题上移动🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼
   questionToUp(event, item) {
     console.log(event, item);
     if (ArrayUtils.isFirst(this.dwSurvey, item)) {
@@ -195,7 +215,7 @@ export class DesignerComponent implements OnInit {
     ArrayUtils.swapArray(this.dwSurvey, index, index - 1);
   }
 
-  // 问题下移动
+  // 问题下移动⏬⏬⏬⏬⏬⏬⏬⏬⏬⏬⏬⏬⏬
   questionToDown(event, item) {
     if (ArrayUtils.isLast(this.dwSurvey, item)) {
       console.log('这是最下面的');

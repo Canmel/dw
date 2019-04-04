@@ -1,4 +1,5 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwMarital extends DwSubject {
 
@@ -7,5 +8,6 @@ export class DwMarital extends DwSubject {
   constructor() {
     super();
     this.options = ['是', '否'];
+    this.title = EntityProperties.DWMARITAL;
   }
 }

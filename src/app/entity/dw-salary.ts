@@ -1,4 +1,5 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwSalary extends DwSubject {
 
@@ -6,7 +7,7 @@ export class DwSalary extends DwSubject {
 
   constructor() {
     super();
-    this.title = '您的月平均收入是？';
+    this.title = EntityProperties.DWSALARY;
     this.options = ['3000元以下', '3000-5000元', '5000-10000元', '10000-20000元', '20000元以上'];
   }
 }

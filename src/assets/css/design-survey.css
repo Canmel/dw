@@ -860,7 +860,7 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 	padding-left: 10px;
 	border-left: 1px solid transparent;
 	min-height: 100px;
-	/*width: 700px;*/
+	width: 90%;
 }
 .surveyQuItemBody.hover .surveyQuItemContent{
  	border-left: 1px solid #DDE1E7;
@@ -1515,7 +1515,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 /** 排序题 **/
 .quOrderByLeft{
 	float: left;
-	width: 300px;
+	width: 40%;
 	overflow: auto;
 }
 .quOrderByLeft ul li{
@@ -1523,7 +1523,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	padding: 7px 5px;
 }
 .quOrderByLeft .quCoOptionEdit{
-	width: 280px;
+	width: 90%;
 	border: 1px solid #CCCCCC;
 	padding-left: 3px;
 }

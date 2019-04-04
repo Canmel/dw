@@ -1,4 +1,5 @@
 export enum DwCommonType {
   TITLE,
-  OPTION
+  OPTION,
+  MFILLBLANK
 }

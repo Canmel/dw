@@ -1,4 +1,5 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwBirthday extends DwSubject {
 
@@ -7,6 +8,6 @@ export class DwBirthday extends DwSubject {
   constructor() {
     super();
     this.quAnswer = '';
-    this.title = '您的生日是?';
+    this.title = EntityProperties.DWBIRTHDAY;
   }
 }

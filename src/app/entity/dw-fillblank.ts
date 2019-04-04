@@ -1,11 +1,11 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwFillblank extends DwSubject {
 
-  quFillblankAnswer: string;
-
   constructor() {
     super();
-    this.quFillblankAnswer = '';
+    this.quFillblankAnswer = '我是默认值';
+    this.title = EntityProperties.DWFILLBLANK;
   }
 }

@@ -1,4 +1,5 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwGender extends DwSubject {
 
@@ -6,6 +7,7 @@ export class DwGender extends DwSubject {
 
   constructor() {
     super();
-    this.options = ['男', '女'];
+    this.options = ['男', '女', '中'];
+    this.title = EntityProperties.DWGENDER;
   }
 }

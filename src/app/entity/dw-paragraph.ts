@@ -1,9 +1,10 @@
 import {DwSubject} from './dw-subject';
+import {EntityProperties} from '../public/entity-properties';
 
 export class DwParagraph extends DwSubject {
 
   constructor() {
     super();
-    this.title = '分段标记';
+    this.title = EntityProperties.DWPARAGRAPH;
   }
 }
