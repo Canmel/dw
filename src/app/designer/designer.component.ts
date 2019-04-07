@@ -18,6 +18,7 @@ import {DwSubject} from '../entity/dw-subject';
 import {DwCommonEditRoot} from '../entity/dwCommonEditRoot';
 import {DwCommonType} from '../enum/dw-common-type.enum';
 import {ArrayUtils} from '../utils/ArrayUtils';
+import {isNumber, isString} from 'util';
 
 @Component({
   selector: 'app-designer',
@@ -28,7 +29,7 @@ export class DesignerComponent implements OnInit {
 
   @ViewChild('vcRef', {read: ViewContainerRef}) vcRef: ViewContainerRef;
 
-  li_surveyQuItemBody = [];
+  // li_surveyQuItemBody = [];
 
   modalRef: BsModalRef;
 
@@ -64,6 +65,8 @@ export class DesignerComponent implements OnInit {
 
   dwCommonEditRoot: DwCommonEditRoot;
 
+  dwSubscribe: string;
+
   constructor(private modalService: BsModalService) {
     $(document).click(function () {
       $('#dwCommonEditRoot').hide();
@@ -78,6 +81,7 @@ export class DesignerComponent implements OnInit {
     $(window).resize(function () {
       $('#dwCommonEditRoot').hide();
     });
+    alert();
   }
 
   itemInstanceofDwSubject(ty: any, className) {
@@ -162,7 +166,7 @@ export class DesignerComponent implements OnInit {
       this.dwCommonEditRoot.index = i;
       this.dwCommonEditRoot.quValue = option;
     }
-    if(subject.quMFillblankAnswer) {
+    if (subject.quMFillblankAnswer) {
       const i = subject.quMFillblankAnswer.indexOf(option);
       this.dwCommonEditRoot.index = i;
       this.dwCommonEditRoot.quValue = option[0];
@@ -171,8 +175,10 @@ export class DesignerComponent implements OnInit {
     if (options) {
       console.log(options);
     }
-    if (params && params.width) {
+    if (params && params.width && isString(params.width)) {
       $('.dwCommonEdit').css('width', $(params.width).width());
+    } else if (params && params.width && isNumber(params.width)) {
+      $('.dwCommonEdit').css('width', params.width);
     } else {
       $('.dwCommonEdit').css('width', 600);
     }

@@ -41,6 +41,7 @@ export class DesignComponent implements OnInit {
     console.log(this.surTitleTemp);
     this.modalService.hide(1);
     this.router.navigate(['/designer']);
+    // window.location.href = '/designer';
   }
 
   newDesignTempalteCancel() {
