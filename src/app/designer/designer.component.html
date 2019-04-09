@@ -39,7 +39,7 @@
   <input type="hidden" id="id" name="id" value="">
   <div style="clear: both;"></div>
 
-  <div style="position: fixed; top: 10%; width: 100%;z-index: 999;">
+  <div style="position: fixed; top: 10%; width: 100%;z-index: 999; background-color: #e8e9eb;">
     <tabset [justified]="true">
       <tab heading="基本" id="tab1">
         <div class="row">
@@ -124,7 +124,7 @@
     </tabset>
   </div>
 
-  <div style="padding-top: 215px; padding-bottom: 100px;">
+  <div style="padding-top: 215px; padding-bottom: 100px; height: 750px; overflow: scroll;">
     <div id="dw_body_content" style="left: -9.5px;">
 
       <div id="dwSurveyTitle">
@@ -134,7 +134,9 @@
       <div id="dwSurveyNote">
         <div id="dwSurveyNoteTools">参考样例</div>
 
-        <div id="dwSurveyNoteEdit" class="editAble dwSvyNoteEdit" (click)="quCoTitleEditHandler($event, item)">非常感谢您的参与！如有涉及个人信息，我们将严格保密。</div>
+        <div id="dwSurveyNoteEdit" class="editAble dwSvyNoteEdit" (click)="quCoTitleEditHandler($event, item)">
+          非常感谢您的参与！如有涉及个人信息，我们将严格保密。
+        </div>
         <input type="hidden" name="svyNoteSaveTag" value="1">
       </div>
 
@@ -170,7 +172,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -178,7 +180,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -196,7 +198,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -254,7 +257,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -262,7 +265,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -280,7 +283,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -342,7 +346,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -350,7 +354,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -368,7 +372,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -413,7 +418,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -421,7 +426,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -439,7 +444,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -493,10 +499,10 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -514,7 +520,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -589,7 +596,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -597,7 +604,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -615,7 +622,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -665,7 +673,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -673,7 +681,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -691,7 +699,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -737,7 +746,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -745,7 +754,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -763,7 +772,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -820,7 +830,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -828,7 +838,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -846,7 +856,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -904,7 +915,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -912,7 +923,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -930,7 +941,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -987,7 +999,7 @@
                     <li title="移动排序" class="dwQuMove ui-draggable">
                       <div class="dwQuIcon"></div>
                     </li>
-                    <li title="设置" class="dwQuSet ui-draggable">
+                    <li title="设置" class="dwQuSet ui-draggable" (click)="setting($event,item)">
                       <div class="dwQuIcon"></div>
                     </li>
                     <li title="逻辑" class="dwQuLogic ui-draggable">
@@ -995,7 +1007,7 @@
                         <div class="quLogicInfo"></div>
                       </div>
                     </li>
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -1013,7 +1025,8 @@
                 <div class="surveyQuItemContent">
                   <div class="quCoTitle">
                     <div class="quCoNum">{{i + 1}}、</div>
-                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}</div>
+                    <div class="editAble quCoTitleEdit" (click)="quCoTitleEditHandler($event, item)">{{item.title}}
+                    </div>
                     <input type="hidden" name="quTitleSaveTag" value="0">
                   </div>
                   <div class="quCoItem">
@@ -1063,7 +1076,7 @@
               <div class="surveyQuItem">
                 <div class="surveyQuItemLeftTools">
                   <ul class="surveyQuItemLeftToolsUl">
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -1104,7 +1117,7 @@
               <div class="surveyQuItem">
                 <div class="surveyQuItemLeftTools">
                   <ul class="surveyQuItemLeftToolsUl">
-                    <li title="删除" class="dwQuDelete ui-draggable">
+                    <li title="删除" class="dwQuDelete ui-draggable" (click)="del(item)">
                       <div class="dwQuIcon"></div>
                     </li>
                   </ul>
@@ -1137,8 +1150,8 @@
   </div>
 
 
-  <div style="position: fixed; bottom: 0;width: 100%; z-index: 999; max-height: 100px;">
-    <div class="dw_foot" style="padding-top:20px;" >
+  <div style="position: fixed; bottom: 0;width: 100%; z-index: 999; max-height: 100px; background-color: #e8e9eb;">
+    <div class="dw_foot" style="padding-top:20px;">
 
       <div class="dw_footcopy" style="font-size: 16px;color: gray;">
         <p style="margin-bottom: 6px;">
@@ -1316,10 +1329,10 @@
       <!-- <li><a href="javascript:;" class="reference_Set" style="display: none;"><i class="menu_edit4_icon"></i>引用设置</a></li> -->
     </ul>
     <ul class="dwComEditOptionUl">
-      <li class="dwOptionUp">
+      <li class="dwOptionUp" (click)="dwOptionUp(dwCommonEditRoot.quValue)">
         <div class="dwQuIcon"></div>
       </li>
-      <li class="dwOptionDown">
+      <li class="dwOptionDown" (click)="dwOptionDown(dwCommonEditRoot.quValue)">
         <div class="dwQuIcon"></div>
       </li>
       <li class="dwOptionDel">
@@ -1331,4 +1344,88 @@
          (blur)="dwComEditContentBlurHandler()">{{dwCommonEditRoot.quValue}}
     </div>
   </div>
+</div>
+
+
+<div id="dwCommonDialog" style="display: none; top: 332px; left: 339.5px;" (click)="dwCommonDialogClick()" *ngIf="currentSubject">
+  <form action="#" id="dwCommonDialogForm">
+    <div class="dwCommonRefIcon left"><div class="dwCommonRefIcon1"></div><div class="dwCommonRefIcon2"></div></div>
+    <div class="dwCommonDialogBody">
+      <div class="dwCommonDialogTitle"><span id="dwComDialogTitleText">标题文本</span><span id="dwCommonDialogClose" class="closeDialog"></span></div>
+      <div class="dwCommonDialogContent">
+        <!-- 默认显示的LOAD -->
+        <div class="dwQuDialogLoad dwQuDialogCon" style="display: none;"><img alt="" src="/assets/images/load.gif"></div>
+        <!-- 题目设置 -->
+
+        <div class="dwQuSetCon dwQuFormSetDialog dwQuDialogCon" style="display: block;">
+          <ul>
+            <!-- <li><input type="checkbox" name="quChage"><label>切换为多选</label> </li> -->
+            <li><label><input type="checkbox" name="setIsRequired" [(ngModel)]="currentSubject.require">此题必答</label> </li>
+            <li class="optionAutoOrder" style="display: none;"><label><input type="checkbox" name="setRandOrder">选择随机排列</label> </li>
+            <li class="contactsAttrLi" style="display: none;"><label><input type="checkbox" name="setAutoContacts">关联到联系人属性</label> </li>
+            <li class="contactsFieldLi" style="display: none;"><label>用户填写的内容，会成为联系人的</label>
+              <select class="contacts_range" name="setContactsField" style="width:120px;">
+                <option value="1">姓名</option>
+                <option value="2">手机</option>
+                <option value="3">地址</option>
+                <option value="4">生日</option>
+                <option value="5">Email</option>
+                <option value="6">性别</option>
+                <option value="7">公司</option>
+                <option value="8">城市</option>
+                <option value="9">婚姻</option>
+                <option value="10">收入</option>
+              </select>
+            </li>
+            <li class="optionRangeHv" style="display: none;"><label>选项排放：</label>
+              <select class="option_range valid" name="setHv" style="width:120px;">
+                <option value="2">竖排</option>
+                <option value="1">横排</option>
+                <option value="3">按列</option>
+                <!-- <option value="4">下拉显示</option> -->
+              </select>
+              <span class="option_range_3" style="display: none;"><input type="text" name="setCellCount" size="2" value="3" class="error">&nbsp;列<label for="setCellCount" generated="true" class="error" style="display: inline;">������������ 1 </label></span>
+            </li>
+            <!-- <li class="minNumLi">最少选&nbsp;<input type="text" size="3" name="minNum">&nbsp;项 </li>
+                      <li class="maxNumLi">最多选&nbsp;<input type="text" size="3" name="maxNum">&nbsp;项 </li> -->
+            <li class="minMaxLi" style="display: none;">
+              <span class="minSpan"><label class="lgleftLabel">������������</label>&nbsp;<input class="minNum" value="1" type="text" size="2">&nbsp; <label class="lgRightLabel">���</label></span>&nbsp;&nbsp;
+              <span class="maxSpan" style="display: none;"><label class="lgLeftLabel">最高分</label>&nbsp;<input class="maxNum" value="5" type="text" size="2">&nbsp;<label class="lgRightLabel">���</label> </span>
+            </li>
+            <li class="scoreMinMax" style="display: none;">&nbsp;&nbsp;<label>最高分</label>&nbsp;<select class="maxScore"><option value="5">5分</option><option value="10">10分</option></select>&nbsp; </li>
+          </ul>
+          <div class="dwQuDialogBtnCon"><input type="button" value="保存" class="quDialogBtn" id="dwDialogQuSetSave" (click)="dwDialogQuSetSaveHandler()"></div>
+        </div>
+
+        <!-- 逻辑设置 -->
+        <div class="dwQuDialogLogic dwQuDialogCon" style="display: none;">
+          <div class="dwQuDialogLogicTitle">逻辑设置</div>
+          <table id="dwQuLogicTable"><tbody><tr class="quLogicItem_3">
+            <td class="ifSpanText1">如果本题回答</td>
+            <td><select name="option_id" class="logicQuOptionSel"><option value="">-���������������-</option><option value="4028e48469e34585016a0232d3840009">选项1</option><option value="4028e48469e34585016a0232d384000a">选项2</option></select></td>
+            <td>则&nbsp;<select name="option_id" class="logicType" style="width: 60px;"><option value="2">显示</option><option value="1">跳到</option></select> </td>
+            <td><select name="jump_to_qid" class="logicQuSel"><option value="">-���������������-</option><option value="1">������������������������������</option><option value="2">���������������������������������</option></select></td>
+            <td><div class="dialogRemoveLogic"></div></td>
+          </tr><tr class="quLogicItem_4">
+            <td class="ifSpanText1">如果本题回答</td>
+            <td><select name="option_id" class="logicQuOptionSel"><option value="">-���������������-</option><option value="4028e48469e34585016a0232d384000a">选项2</option></select></td>
+            <td>则&nbsp;<select name="option_id" class="logicType" style="width: 60px;"><option value="2">显示</option><option value="1">跳到</option></select> </td>
+            <td><select name="jump_to_qid" class="logicQuSel"><option value="">-���������������-</option><option value="1">������������������������������</option><option value="2">���������������������������������</option></select></td>
+            <td><div class="dialogRemoveLogic"></div></td>
+          </tr></tbody></table>
+          <div class="dwQuDialogBotEvent"><div class="dwQuDialogAddLogic"><div class="dwQuIcon"></div></div></div>
+          <div class="dwQuDialogBtnCon"><input type="button" value="保存" class="quDialogBtn" id="dwDialogSaveLogic"></div>
+        </div>
+
+        <!-- 批量添加，单选 -->
+        <div class="dwQuAddMore dwQuDialogCon" style="display: none;">
+          <div class="dwQuTextSpan">每行一个选项</div>
+          <textarea id="dwQuMoreTextarea"></textarea>
+          <div class="dwQuDialogBtnCon"><input type="button" value="保存" class="quDialogBtn" id="dwDialogSaveMoreItem"></div>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
 </div>
