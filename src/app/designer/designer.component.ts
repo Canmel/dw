@@ -63,6 +63,8 @@ export class DesignerComponent implements OnInit {
 
   currentSubject: DwSubject;
 
+  isRequired: boolean;
+
   dwCommonEditRoot: DwCommonEditRoot;
 
   dwSubscribe: string;
@@ -81,7 +83,9 @@ export class DesignerComponent implements OnInit {
     $(window).resize(function () {
       $('#dwCommonEditRoot').hide();
     });
-    alert();
+    $(document).click(function () {
+      $('#dwCommonDialog').hide();
+    });
   }
 
   itemInstanceofDwSubject(ty: any, className) {
@@ -236,4 +240,55 @@ export class DesignerComponent implements OnInit {
     $('#dwCommonEditRoot').css('left', $(target).offset().left);
   }
 
+  del(subject: DwSubject) {
+    const subIndex = this.dwSurvey.indexOf(subject);
+    this.dwSurvey.splice(subIndex, 1);
+  }
+
+  setting(event, suject: DwSubject) {
+    console.log(event);
+    this.currentSubject = suject;
+    $('#dwCommonDialog').css('display', 'block');
+    $('#dwCommonDialog').css('top', event.clientY - 10);
+    $('#dwCommonDialog').css('left', event.clientX + 20);
+    event.stopPropagation();
+  }
+
+  // 关闭 设置弹出
+  closeDwCommonDialog() {
+    $('#dwCommonDialog').hide();
+  }
+
+  // 设置弹出 防止冒泡
+  dwCommonDialogClick() {
+    event.stopPropagation();
+  }
+
+  // 设置弹出 保存按钮回调
+  dwDialogQuSetSaveHandler() {
+    console.log(this.dwSurvey);
+    this.closeDwCommonDialog();
+  }
+
+  dwOptionUp(quValue) {
+    const quValueIndex =  this.currentSubject.options.indexOf(quValue);
+    if(quValueIndex === 0){
+      console.log('已经是第一个了')
+      return false;
+    }
+    const tem = this.currentSubject.options[quValueIndex - 1];
+    this.currentSubject.options[quValueIndex - 1] = quValue;
+    this.currentSubject.options[quValueIndex] = tem;
+  }
+
+  dwOptionDown(quValue) {
+    const quValueIndex =  this.currentSubject.options.indexOf(quValue);
+    if(quValueIndex === this.currentSubject.options.length){
+      console.log('已经最后一个了');
+      return false;
+    }
+    const tem = this.currentSubject.options[quValueIndex + 1];
+    this.currentSubject.options[quValueIndex + 1] = quValue;
+    this.currentSubject.options[quValueIndex] = tem;
+  }
 }

@@ -6,8 +6,10 @@ export class DwSubject {
   quFillblankAnswer: string;
   quMFillblankAnswer: Array<Array<string>>;
   quAnswer: Array<any>;
+  require: boolean;
 
   constructor() {
+    this.require = false;
     this.title = EntityProperties.DWSUBJECT;
   }
 }
