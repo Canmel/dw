@@ -1,6 +1,7 @@
 <!--<link href="/assets/js/plugs/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">-->
 <link href="/assets/css/dw-user.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/design-survey.css" rel="stylesheet" type="text/css">
+
 <div id="wrap">
   <input type="hidden" id="ctx" name="ctx" value="">
 
@@ -632,7 +633,12 @@
                         <!-- <input type="text" style="width:200px;padding:5px;"> -->
                         <div class="quFillblankItem">
                           <input type="text" style="width:300px;padding:5px;"
-                                 class="quFillblankAnswerInput" [(ngModel)]="item.quFillblankAnswer">
+                                 class="quFillblankAnswerInput" [(ngModel)]="item.quFillblankAnswer"
+                                 [minDate]="minDate"
+                                 [maxDate]="maxDate"
+                                 #dpYMD="bsDatepicker"
+                                 bsDatepicker
+                                 [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
                           <textarea rows="5" style="width:300px;display: none;"
                                     class="quFillblankAnswerTextarea"></textarea>
                           <div class="dwFbMenuBtn "></div>

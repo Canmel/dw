@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DesignerRoutingModule } from './designer-routing.module';
 import { DesignerComponent } from './designer.component';
-import {AlertModule, ModalModule, PopoverModule, TabsModule} from 'ngx-bootstrap';
+import {AlertModule, BsDatepickerModule, ModalModule, PopoverModule, TabsModule} from 'ngx-bootstrap';
 import {NgDragDropModule} from 'ng-drag-drop';
 import {FormsModule} from '@angular/forms';
 
@@ -19,7 +19,8 @@ import {FormsModule} from '@angular/forms';
     NgDragDropModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ]
 })
 export class DesignerModule { }

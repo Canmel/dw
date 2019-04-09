@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService, setTheme} from 'ngx-bootstrap';
 import * as $ from 'jquery';
 import {DwRadio} from '../entity/dw-radio';
 import {DwCheckbox} from '../entity/dw-checkbox';
@@ -19,6 +19,7 @@ import {DwCommonEditRoot} from '../entity/dwCommonEditRoot';
 import {DwCommonType} from '../enum/dw-common-type.enum';
 import {ArrayUtils} from '../utils/ArrayUtils';
 import {isNumber, isString} from 'util';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-designer',
@@ -74,6 +75,7 @@ export class DesignerComponent implements OnInit {
       $('#dwCommonEditRoot').hide();
       event.stopPropagation();
     });
+    setTheme('bs4')
     this.dwSurvey = [];
     this.dwCommonEditRoot = new DwCommonEditRoot();
   }
