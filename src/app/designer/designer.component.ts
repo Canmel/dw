@@ -31,7 +31,10 @@ export class DesignerComponent implements OnInit {
 
   @ViewChild('vcRef', {read: ViewContainerRef}) vcRef: ViewContainerRef;
 
-  // li_surveyQuItemBody = [];
+  variableShow = {
+    optionSetLi: true,
+    seniorEdit: true
+  };
 
   modalRef: BsModalRef;
 
@@ -153,7 +156,10 @@ export class DesignerComponent implements OnInit {
 
   // 问题标题编辑回调
   quCoTitleEditHandler(event, subject: DwSubject) {
+    $('.dwComEditMenuUl').hide();
     this.currentSubject = subject;
+    this.variableShow.optionSetLi = false;
+    this.variableShow.seniorEdit = true;
     this.dwCommonEditRoot.quValue = subject.title;
     this.dwCommonEditRoot.type = DwCommonType.TITLE;
     this.rePositionModal(event.target);
@@ -169,6 +175,9 @@ export class DesignerComponent implements OnInit {
   quCoOptionEditHandler(event, subject: DwSubject, option: any, params: any) {
     console.log(option);
     console.log(subject);
+    $('.dwComEditMenuUl').hide();
+    this.variableShow.optionSetLi = true;
+    this.variableShow.seniorEdit = true;
     this.rePositionModal(event.target);
     this.currentSubject = subject;
 
@@ -205,11 +214,12 @@ export class DesignerComponent implements OnInit {
     console.log(this.currentOption);
   }
 
-
+  // 点击输入框 阻止事件传播，使其不会自动关闭
   dwComEditContentHandler(event) {
     event.stopPropagation();
   }
 
+  // 输入框丢失焦点事件
   dwComEditContentBlurHandler() {
     this.dwCommonEditRoot.quValue = $('#dwComEditContent').html();
     if (this.dwCommonEditRoot.type === DwCommonType.TITLE) {
@@ -219,6 +229,7 @@ export class DesignerComponent implements OnInit {
     } else if (this.dwCommonEditRoot.type === DwCommonType.MFILLBLANK) {
       this.currentSubject.quMFillblankAnswer[this.dwCommonEditRoot.index][0] = this.dwCommonEditRoot.quValue;
     }
+    $('.dwComEditMenuUl').hide();
     console.log(this.currentSubject);
     // this.dwSurvey[0]
   }

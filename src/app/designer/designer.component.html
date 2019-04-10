@@ -1332,7 +1332,7 @@
   <div class="dwCommonEdit" style="width: 600px;">
     <ul class="dwComEditMenuUl" style="display: none;">
       <li (click)="seniorEditHandler($event)"><a href="javascript:;" class="SeniorEdit"><i class="menu_edit2_icon"></i>高级编辑</a></li>
-      <li class="option_Set_Li" (click)="optionSetHandler($event, modelUIDialogTemplate)"><a href="javascript:;" class="option_Set"><i class="menu_edit4_icon"></i>选项设置</a></li>
+      <li class="option_Set_Li" [ngStyle]="{'display': variableShow.optionSetLi? 'block' : 'none'}" (click)="optionSetHandler($event, modelUIDialogTemplate)"><a href="javascript:;" class="option_Set"><i class="menu_edit4_icon"></i>选项设置</a></li>
       <!-- <li><a href="javascript:;" class="reference_Set" style="display: none;"><i class="menu_edit4_icon"></i>引用设置</a></li> -->
     </ul>
     <ul class="dwComEditOptionUl">

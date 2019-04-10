@@ -29,7 +29,13 @@ export class DesignComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    $.ajax({
+      url: '/api/person',
+      method: 'get',
+      success: function (data) {
+        console.log(data);
+      }
+    });
   }
 
   newDesign(template) {
