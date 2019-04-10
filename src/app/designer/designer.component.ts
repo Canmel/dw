@@ -20,6 +20,7 @@ import {DwCommonType} from '../enum/dw-common-type.enum';
 import {ArrayUtils} from '../utils/ArrayUtils';
 import {isNumber, isString} from 'util';
 import {FormControl, FormGroup} from '@angular/forms';
+import {SubOption} from '../entity/subjectAttr/sub-option';
 
 @Component({
   selector: 'app-designer',
@@ -33,6 +34,8 @@ export class DesignerComponent implements OnInit {
   // li_surveyQuItemBody = [];
 
   modalRef: BsModalRef;
+
+  modalRefEdit: BsModalRef;
 
   @ViewChild('radioDwQuTypeModel') radioDwQuTypeModel: TemplateRef<any>;
 
@@ -64,6 +67,8 @@ export class DesignerComponent implements OnInit {
 
   currentSubject: DwSubject;
 
+  currentOption: SubOption;
+
   isRequired: boolean;
 
   dwCommonEditRoot: DwCommonEditRoot;
@@ -75,7 +80,7 @@ export class DesignerComponent implements OnInit {
       $('#dwCommonEditRoot').hide();
       event.stopPropagation();
     });
-    setTheme('bs4')
+    setTheme('bs4');
     this.dwSurvey = [];
     this.dwCommonEditRoot = new DwCommonEditRoot();
   }
@@ -166,11 +171,13 @@ export class DesignerComponent implements OnInit {
     console.log(subject);
     this.rePositionModal(event.target);
     this.currentSubject = subject;
+
     this.dwCommonEditRoot.type = DwCommonType.OPTION;
     if (subject.options) {
       const i = subject.options.indexOf(option);
       this.dwCommonEditRoot.index = i;
-      this.dwCommonEditRoot.quValue = option;
+      this.dwCommonEditRoot.quValue = option.text;
+      this.currentOption = option;
     }
     if (subject.quMFillblankAnswer) {
       const i = subject.quMFillblankAnswer.indexOf(option);
@@ -195,6 +202,7 @@ export class DesignerComponent implements OnInit {
     $('#dwCommonEditRoot').show();
     $('#dwCommonEditRoot').removeClass().addClass('quOptionEdit');
     event.stopPropagation();
+    console.log(this.currentOption);
   }
 
 
@@ -207,7 +215,7 @@ export class DesignerComponent implements OnInit {
     if (this.dwCommonEditRoot.type === DwCommonType.TITLE) {
       this.currentSubject.title = this.dwCommonEditRoot.quValue;
     } else if (this.dwCommonEditRoot.type === DwCommonType.OPTION) {
-      this.currentSubject.options[this.dwCommonEditRoot.index] = this.dwCommonEditRoot.quValue;
+      this.currentSubject.options[this.dwCommonEditRoot.index] = new SubOption(this.dwCommonEditRoot.quValue);
     } else if (this.dwCommonEditRoot.type === DwCommonType.MFILLBLANK) {
       this.currentSubject.quMFillblankAnswer[this.dwCommonEditRoot.index][0] = this.dwCommonEditRoot.quValue;
     }
@@ -272,25 +280,54 @@ export class DesignerComponent implements OnInit {
     this.closeDwCommonDialog();
   }
 
+  // 选项上调
   dwOptionUp(quValue) {
-    const quValueIndex =  this.currentSubject.options.indexOf(quValue);
-    if(quValueIndex === 0){
-      console.log('已经是第一个了')
+    console.log(quValue);
+    const quValueIndex = SubOption.indexOfArray(this.currentSubject.options, quValue);
+    if (quValueIndex === 0) {
+      console.log('已经是第一个了');
       return false;
     }
-    const tem = this.currentSubject.options[quValueIndex - 1];
-    this.currentSubject.options[quValueIndex - 1] = quValue;
-    this.currentSubject.options[quValueIndex] = tem;
+    const tem = this.currentSubject.getOptionByIndex(quValueIndex - 1);
+    this.currentSubject.setOptionByIndex(quValueIndex - 1, SubOption.getByTextFromArray(this.currentSubject.options, quValue));
+    this.currentSubject.setOptionByIndex(quValueIndex, tem);
   }
 
+  // 选项下调
   dwOptionDown(quValue) {
-    const quValueIndex =  this.currentSubject.options.indexOf(quValue);
-    if(quValueIndex === this.currentSubject.options.length){
+    const quValueIndex = SubOption.indexOfArray(this.currentSubject.options, quValue);
+    if (quValueIndex === this.currentSubject.options.length) {
       console.log('已经最后一个了');
       return false;
     }
-    const tem = this.currentSubject.options[quValueIndex + 1];
-    this.currentSubject.options[quValueIndex + 1] = quValue;
-    this.currentSubject.options[quValueIndex] = tem;
+    const tem = this.currentSubject.getOptionByIndex(quValueIndex + 1);
+    this.currentSubject.setOptionByIndex(quValueIndex + 1, SubOption.getByTextFromArray(this.currentSubject.options, quValue));
+    this.currentSubject.setOptionByIndex(quValueIndex, tem);
   }
+
+  // 显示高级编辑下拉菜单
+  dwComEditMenuBtnHandler(event) {
+    $('.dwComEditMenuUl').css('display', 'block');
+    event.stopPropagation();
+  }
+
+  seniorEditHandler(event) {
+    alert(123);
+    event.stopPropagation();
+  }
+
+  optionSetHandler(event, template) {
+    this.modalRefEdit = this.modalService.show(template);
+    event.stopPropagation();
+  }
+
+  testOption() {
+    return false;
+  }
+
+  dwDialogQuOptionSetSaveHandler() {
+    console.log(this.currentSubject);
+  }
+
+
 }
