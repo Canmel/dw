@@ -1,11 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { DesignRoutingModule } from './design-routing.module';
-import { DesignComponent } from './design.component';
+import {DesignRoutingModule} from './design-routing.module';
+import {DesignComponent} from './design.component';
 import {NgDragDropModule} from 'ng-drag-drop';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpService} from '../utils/http.service';
 
 @NgModule({
   declarations: [DesignComponent],
@@ -14,7 +16,12 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     DesignRoutingModule,
     NgDragDropModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    HttpClientModule
+  ],
+  providers: [
+    HttpService
   ]
 })
-export class DesignModule { }
+export class DesignModule {
+}
