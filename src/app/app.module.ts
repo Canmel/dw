@@ -8,6 +8,9 @@ import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {ProgressbarModule} from 'ngx-bootstrap';
+import {CookieService} from 'ngx-cookie-service';
+import {HttpService} from './http.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,10 +22,14 @@ import {ProgressbarModule} from 'ngx-bootstrap';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot(),
     ProgressbarModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class HttpService {
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private inject: Injectable) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {
   }
 
   /**

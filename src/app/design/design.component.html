@@ -7,7 +7,9 @@
           <div style="padding: 25px 45px;overflow: auto;padding-top: 20px;">
             <div style="padding: 5px;color: #666565;letter-spacing: 2px;">
               所有问卷&nbsp;&nbsp;|&nbsp;&nbsp;
-              <button type="button" id="surveyAdd-a" (click)="newDesign(template)" class="btn btn-primary"><i class="fa fa-plus " aria-hidden="true"></i>新建问卷</button>
+              <button type="button" id="surveyAdd-a" (click)="newDesign(template)" class="btn btn-primary"><i
+                class="fa fa-plus " aria-hidden="true"></i>新建问卷
+              </button>
             </div>
 
             <form action="/design/my-survey.action" method="post">
@@ -47,19 +49,21 @@
                   </tr>
 
 
-                  <tr>
+                  <tr *ngFor="let item of records">
                     <td align="center">
                       <input type="hidden" name="surveyId" value="40288285697b610701697b62908c0000">
                     </td>
-                    <td align="left"><a target="_blank" href="/dwsurvey/78ljil8evt.html" class="titleTag">AAAAA</a>
+                    <td align="left"><a target="_blank" href="/dwsurvey/78ljil8evt.html" class="titleTag">{{item.surveyName}}</a>
                     </td>
                     <td align="left" width="100">柯远</td>
                     <td align="left">
-                      2019年03月14日 16:47
+                      {{item}}
                     </td>
-                    <td align="left">0&nbsp;</td>
+                    <td align="left">{{item.answerNum}}&nbsp;</td>
                     <td align="left">
-                      发布
+                      {{
+                      item.surveyState === 0 ? '设计':item.surveyState ===1 ? '发布': item.surveyState === 2 ? '收集完成': ''
+                      }}
                     </td>
                     <td align="left">
                       <div class="btn-group surveyLeftBtnGroup">
@@ -90,49 +94,6 @@
                     </td>
                   </tr>
 
-                  <tr>
-                    <td align="center">
-                      <input type="hidden" name="surveyId" value="402880e55cb9c629015cb9d31eff0000">
-                    </td>
-                    <td align="left"><a target="_blank" href="/dwsurvey/2p4tsrc5cvz.html" class="titleTag">第一份测试问卷</a>
-                    </td>
-                    <td align="left" width="100">柯远</td>
-                    <td align="left">
-                      2017年06月18日 14:10
-                    </td>
-                    <td align="left">0&nbsp;</td>
-                    <td align="left">
-                      发布
-                    </td>
-                    <td align="left">
-                      <div class="btn-group surveyLeftBtnGroup">
-                        <a class="btn btn-default"
-                           href="/design/my-survey-design.action?surveyId=402880e55cb9c629015cb9d31eff0000" title=""
-                           data-toggle="tooltip" data-placement="top" data-original-title="设计"><i
-                          class="fa fa-pencil-square-o"></i></a>
-                        <a class="btn btn-default"
-                           href="/design/my-collect.action?surveyId=402880e55cb9c629015cb9d31eff0000" title=""
-                           data-toggle="tooltip" data-placement="top" data-original-title="收集答卷"><i
-                          class="fa fa-comments-o"></i></a>
-                        <a class="btn btn-default"
-                           href="/da/survey-report!defaultReport.action?surveyId=402880e55cb9c629015cb9d31eff0000"
-                           title="" data-toggle="tooltip" data-placement="top" data-original-title="分析报告"><i
-                          class="fa fa-line-chart"></i></a>
-                        <a class="btn btn-default copySurvey" href="#402880e55cb9c629015cb9d31eff0000" title=""
-                           data-toggle="tooltip" data-placement="top" data-original-title="复制一份"><i
-                          class="fa fa-files-o"></i></a>
-                        <a class="btn btn-default deleteSurvey"
-                           href="/design/my-survey!delete.action?id=402880e55cb9c629015cb9d31eff0000" title=""
-                           data-toggle="tooltip" data-placement="top" data-original-title="删除问卷"><i
-                          class="fa fa-trash-o fa-fw"></i></a>
-                      </div>&nbsp;
-                      <div class="btn-group" style="display: none;">
-                        <!-- <a class="btn btn-default" href="#"><i class="fa fa-eye"></i></a> -->
-                        <a class="btn btn-default" href="#"><i class="fa fa-trash-o fa-fw"></i></a>
-                      </div>
-                    </td>
-                  </tr>
-
 
                   </tbody>
                 </table>
@@ -140,8 +101,7 @@
                   <div class="btn-group">
 
 
-                    <a href="/design/my-survey.action?page.pageNo=1" class="btn btn-default"
-                       style="background: #D3DEED;">1</a>
+                    <pagination [totalItems]="66" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
 
 
                   </div>
@@ -167,7 +127,9 @@
   <div class="modal-body" id="newDesignTempalte">
     <div id="myDialogRoot">
       <div class='dialogMessage' style='padding-top:40px;margin-left:20px;padding-bottom:0px;'>
-        <div class="row"><span class="col-3">问卷标题：</span><input id='surTitleTemp' class="col-9" type='text' style='padding:3px;width:75%;color:rgb(14, 136, 158);' [(ngModel)]="surTitleTemp"></div>
+        <div class="row"><span class="col-3">问卷标题：</span><input id='surTitleTemp' class="col-9" type='text'
+                                                                style='padding:3px;width:75%;color:rgb(14, 136, 158);'
+                                                                [(ngModel)]="surTitleTemp"></div>
         <div style="text-align: right; padding-right: 4rem;padding-top: 2rem;">
           <button class="btn btn-success" (click)="newDesignTempalteConfirm()">确认新建</button>
           <button class="btn btn-default" (click)="newDesignTempalteCancel()">取消</button>

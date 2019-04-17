@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {UrlCollecton} from '../public/url-collection';
 
 @Component({
   selector: 'app-un-authentication',
@@ -9,6 +10,9 @@ import {Router} from '@angular/router';
 export class UnAuthenticationComponent implements OnInit {
 
   jumpTime: number;
+
+
+  urlCollection = UrlCollecton;
 
   constructor(private router: Router) {
     this.jumpTime = 5;

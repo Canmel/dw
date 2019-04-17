@@ -532,7 +532,7 @@
                         <li class="quCoItemUlLi ui-draggable" *ngFor="let option of item.options"><label
                           id="quCoOptionOrderId"
                           class="editAble quCoOptionEdit"
-                          (click)="quCoOptionEditHandler($event, item, option, {width: '#quCoOptionOrderId'})">{{option}}</label>
+                          (click)="quCoOptionEditHandler($event, item, option, {width: '#quCoOptionOrderId'})">{{option.text}}</label>
                           <div class="quItemInputCase"><input type="hidden" name="quItemId" value=""><input
                             type="hidden" name="quItemSaveTag" value="0"></div>
                         </li>

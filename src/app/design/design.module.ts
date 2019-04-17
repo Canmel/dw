@@ -8,6 +8,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpService} from '../http.service';
+import {PaginationModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [DesignComponent],
@@ -17,6 +18,7 @@ import {HttpService} from '../http.service';
     DesignRoutingModule,
     NgDragDropModule.forRoot(),
     ModalModule.forRoot(),
+    PaginationModule.forRoot(),
     HttpClientModule
   ],
   providers: [

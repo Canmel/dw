@@ -11,13 +11,12 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./design.component.css']
 })
 export class DesignComponent implements OnInit {
-  items = [
-    {name: 'Apple', type: 'fruit'},
-    {name: 'Carrot', type: 'vegetable'},
-    {name: 'Orange', type: 'fruit'}];
-
   droppedItems = [];
   modalRef: BsModalRef;
+
+  page: Object;
+
+  records: Array[];
 
   surTitleTemp = '';
 
@@ -25,18 +24,21 @@ export class DesignComponent implements OnInit {
   }
 
   onItemDrop(e: any) {
-    // Get the dropped data here
     console.log(e);
     this.droppedItems.push(e.dragData);
   }
 
   ngOnInit() {
     console.log(this.httpservice);
-    this.httpservice.get('/api/person').then(
-      value => {
-        console.log(value);
-      }
-    );
+    this.pageQuery();
+  }
+
+  pageQuery() {
+    this.httpservice.get('/api/tSurveyDirectory').then(resp => {
+      console.log(resp['data']);
+      this.page = resp['data'];
+      this.records = this.page['list'];
+    });
   }
 
   newDesign(template) {
