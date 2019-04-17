@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Router} from '@angular/router';
-import {HttpService} from '../utils/http.service';
+import {HttpService} from '../http.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-design',
@@ -20,7 +21,7 @@ export class DesignComponent implements OnInit {
 
   surTitleTemp = '';
 
-  constructor(private modalService: BsModalService, private router: Router, private http: HttpService) {
+  constructor(private modalService: BsModalService, private router: Router, private httpservice: HttpService) {
   }
 
   onItemDrop(e: any) {
@@ -30,7 +31,8 @@ export class DesignComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('/api/person', {}).then(
+    console.log(this.httpservice);
+    this.httpservice.get('/api/person').then(
       value => {
         console.log(value);
       }

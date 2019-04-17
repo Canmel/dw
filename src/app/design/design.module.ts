@@ -7,7 +7,7 @@ import {NgDragDropModule} from 'ng-drag-drop';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpService} from '../utils/http.service';
+import {HttpService} from '../http.service';
 
 @NgModule({
   declarations: [DesignComponent],

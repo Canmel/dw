@@ -4,6 +4,7 @@ import {LoginModule} from './login/login.module';
 import {MainModule} from './main/main.module';
 import {PageNotFoundPageComponent} from './page-not-found-page/page-not-found-page.component';
 import {DesignerModule} from './designer/designer.module';
+import {UnAuthenticationModule} from './un-authentication/un-authentication.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,9 @@ const routes: Routes = [
   }, {
     path: 'designer',
     loadChildren: () => DesignerModule
+  },{
+    path: 'unauthentication',
+    loadChildren: () => UnAuthenticationModule
   }, {
     path: '**',
     loadChildren: () => PageNotFoundPageComponent
