@@ -14,9 +14,9 @@ export class DesignComponent implements OnInit {
   droppedItems = [];
   modalRef: BsModalRef;
 
-  page: Object;
+  page: Object = {total: 0, nextPage: 2};
 
-  records: Array[];
+  records: Array<any>;
 
   surTitleTemp = '';
 
@@ -55,5 +55,9 @@ export class DesignComponent implements OnInit {
 
   newDesignTempalteCancel() {
     this.modalService.hide(1);
+  }
+
+  pageChanged(event) {
+    console.log(event);
   }
 }

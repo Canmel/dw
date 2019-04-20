@@ -9,9 +9,12 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpService} from '../http.service';
 import {PaginationModule} from 'ngx-bootstrap';
+import { DateTimeFormatePipe } from './date-time-formate.pipe';
 
 @NgModule({
-  declarations: [DesignComponent],
+  declarations: [
+    DesignComponent,
+    DateTimeFormatePipe],
   imports: [
     CommonModule,
     FormsModule,

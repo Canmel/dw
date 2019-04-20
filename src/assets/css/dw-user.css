@@ -291,9 +291,9 @@ body{
 	border: none;
 	text-decoration: none;
 }
-.header_menu a:hover{
-	color: white;
-}
+/*.header_menu a:hover{*/
+	/*color: white;*/
+/*}*/
 .header_menu a.active{
 	color: white;
 }

@@ -55,9 +55,9 @@
                     </td>
                     <td align="left"><a target="_blank" href="/dwsurvey/78ljil8evt.html" class="titleTag">{{item.surveyName}}</a>
                     </td>
-                    <td align="left" width="100">柯远</td>
+                    <td align="left" width="100">{{item.tuser.name}}</td>
                     <td align="left">
-                      {{item}}
+                      {{item.createDate | date:'yyyy-MM-dd HH:mm:ss'}}
                     </td>
                     <td align="left">{{item.answerNum}}&nbsp;</td>
                     <td align="left">
@@ -101,7 +101,8 @@
                   <div class="btn-group">
 
 
-                    <pagination [totalItems]="66" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+                    <pagination [totalItems]="page.total" [(ngModel)]="page.nextPage" (pageChanged)="pageChanged($event)"
+                                previousText="上一页" nextText="下一页"></pagination>
 
 
                   </div>
