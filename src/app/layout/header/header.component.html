@@ -13,14 +13,14 @@
     <div class="header_Item header_menu">
       <ul>
 
-        <li><a href="/design/my-survey.action" id="mysurvey" class="active">问卷</a></li>
+        <li><a routerLink="/main/design" id="mysurvey" class="active">问卷</a></li>
 
         <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="true">
           <li><a id="usermanager" dropdownToggle class="">设置</a></li>
           <ul *dropdownMenu class="dropdown-menu" role="menu" style="background-color: #333; color: #bcbcbc;">
-            <li role="menuitem" style="display: contents;"><a class="dropdown-item" style="padding: 10px;">用户管理</a></li>
-            <li role="menuitem" style="display: contents;"><a class="dropdown-item" style="padding: 10px;">角色管理</a></li>
-            <li role="menuitem" style="display: contents;"><a class="dropdown-item" style="padding: 10px;">菜单管理</a></li>
+            <li role="menuitem" style="display: contents;" routerLink="/main/users"><a class="dropdown-item" style="padding: 10px;">用户管理</a></li>
+            <li role="menuitem" style="display: contents;" routerLink="/main/roles"><a class="dropdown-item" style="padding: 10px;">角色管理</a></li>
+            <li role="menuitem" style="display: contents;" routerLink="/main/menus"><a class="dropdown-item" style="padding: 10px;">菜单管理</a></li>
           </ul>
         </div>
 

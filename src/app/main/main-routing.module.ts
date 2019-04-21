@@ -3,7 +3,9 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main.component';
 import {DesignModule} from '../design/design.module';
 import {UserModule} from '../user/user.module';
-import {SystemModule} from '../system/system.module';
+import {UsersModule} from '../sys/users/users.module';
+import {RolesModule} from '../sys/roles/roles.module';
+import {MenusModule} from '../sys/menus/menus.module';
 
 const routes: Routes = [
   {
@@ -21,8 +23,14 @@ const routes: Routes = [
         path: 'design',
         loadChildren: () => DesignModule
       }, {
-        path: 'system',
-        loadChildren: () => SystemModule
+        path: 'users',
+        loadChildren: () => UsersModule
+      }, {
+        path: 'roles',
+        loadChildren: () => RolesModule
+      }, {
+        path: 'menus',
+        loadChildren: () => MenusModule
       }
     ]
   }
