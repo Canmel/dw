@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {HttpService} from '../../../http.service';
 
 @Component({
   selector: 'app-list',
@@ -8,14 +9,21 @@ import {Router} from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private router: Router) {
+  page: Object = {total: 0, nextPage: 2, list: []};
+
+  constructor(private router: Router, private http: HttpService) {
   }
 
   ngOnInit() {
+    this.query();
   }
 
   query() {
-    alert(12);
+    this.http.get('/system/sysUser').then(resp => {
+      console.log(resp);
+      this.page = resp['data'];
+    });
+
   }
 
 }

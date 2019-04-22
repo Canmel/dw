@@ -11,6 +11,7 @@ import {ProgressbarModule} from 'ngx-bootstrap';
 import {CookieService} from 'ngx-cookie-service';
 import {HttpService} from './http.service';
 import {HttpClientModule} from '@angular/common/http';
+import { UserstatusPipe } from './formater/userstatus.pipe';
 
 @NgModule({
   declarations: [

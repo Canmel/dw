@@ -6,12 +6,17 @@ import { UsersComponent } from './users.component';
 import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import {PaginationModule} from 'ngx-bootstrap';
+import {FormsModule} from '@angular/forms';
+import {UserstatusPipe} from '../../formater/userstatus.pipe';
 
 @NgModule({
-  declarations: [UsersComponent, ListComponent, AddComponent, EditComponent],
+  declarations: [UsersComponent, ListComponent, AddComponent, EditComponent, UserstatusPipe],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    FormsModule,
+    UsersRoutingModule,
+    PaginationModule.forRoot()
   ]
 })
 export class UsersModule { }

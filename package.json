@@ -23,6 +23,7 @@
     "angular-auth-oidc-client": "^9.0.4",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
     "jquery": "latest",
     "jquery-ui": "latest",
     "ng-drag-drop": "^5.0.0",

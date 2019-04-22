@@ -26,53 +26,33 @@
             <th>工号</th>
             <th>邮箱</th>
             <th>状态</th>
-            <!--<th>最近登录时间</th>-->
+            <th>最近登录时间</th>
+            <th>操作</th>
           </tr></thead>
           <tbody>
-          <tr>
-            <td>1</td>
-            <td>Dakota Rice</td>
-            <td>$36,738</td>
-            <td>Niger</td>
-            <td>Oud-Turnhout</td>
+          <tr *ngFor="let item of page.list">
+            <td>{{item.uid}}</td>
+            <td>{{item.nickname}}</td>
+            <td>{{item.username}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.status | userstatus}}</td>
+            <td>{{item.lastLoginTime | date:'yyyy-MM-d'}}</td>
+            <td>
+              <a class="btn btn-info btn-xs" routerLink="edit"><i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a>
+            </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Minerva Hooper</td>
-            <td>$23,789</td>
-            <td>Curaçao</td>
-            <td>Sinaai-Waas</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Sage Rodriguez</td>
-            <td>$56,142</td>
-            <td>Netherlands</td>
-            <td>Baileux</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Philip Chaney</td>
-            <td>$38,735</td>
-            <td>Korea, South</td>
-            <td>Overland Park</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Doris Greene</td>
-            <td>$63,542</td>
-            <td>Malawi</td>
-            <td>Feldkirchen in Kärnten</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Mason Porter</td>
-            <td>$78,615</td>
-            <td>Chile</td>
-            <td>Gloucester</td>
-          </tr>
+
           </tbody>
         </table>
+
+      </div>
+      <div class="btn-group">
+
+
+        <pagination [totalItems]="page.total" [(ngModel)]="page.nextPage" (pageChanged)="pageChanged($event)"
+                    previousText="上一页" nextText="下一页"></pagination>
+
 
       </div>
     </div>
