@@ -2,17 +2,56 @@
   <div class="col-md-12">
     <div class="card" style="padding: 10px;">
       <div class="content table-responsive table-full-width">
-        <form class="form-horizontal">
+        <form [formGroup]="userForm" class="form-horizontal" (ngSubmit)="onSubmit()">
           <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">
             <label class="col-md-2 control-label" style="text-align: right;">邮箱</label>
             <div class="col-md-10">
-              <input type="email" placeholder='Email' class="form-control">
+              <input type="email" formControlName="email" placeholder='邮箱' class="form-control">
+              <div [hidden]="userForm.get('email').valid || userForm.get('email').pending">
+                <p [hidden]="!userForm.hasError('email', 'email')">邮箱格式不正确</p>
+                <p [hidden]="!userForm.hasError('required','email')">邮箱是必填项</p>
+                <p [hidden]="!userForm.get('email').pending">正在验证</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">
+            <label class="col-md-2 control-label" style="text-align: right;">工号</label>
+            <div class="col-md-10">
+              <input type="text" formControlName="username" placeholder='工号' class="form-control">
+              <div [hidden]="userForm.get('username').valid || userForm.get('username').untouched">
+                <p [hidden]="!userForm.hasError('required', 'username')">工号是必填项</p>
+                <p [hidden]="!userForm.hasError('maxlength', 'username')">工号最大允许10位</p>
+                <p [hidden]="!userForm.get('username').pending">正在验证...</p>
+              </div>
             </div>
           </div>
           <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">
             <label class="col-md-2 control-label" style="text-align: right;">密码</label>
             <div class="col-md-10">
-              <input type="password" placeholder="Password" class="form-control">
+              <input type="password" formControlName="password" placeholder="密码" class="form-control">
+              <div [hidden]="userForm.get('password').valid || userForm.get('password').untouched">
+                <p [hidden]="!userForm.hasError('minlength','password')">最小长度是6</p>
+                <p [hidden]="!userForm.hasError('required','password')">邮箱是必填项</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">
+            <label class="col-md-2 control-label" style="text-align: right;">手机</label>
+            <div class="col-md-10">
+              <input type="text" formControlName="mobile" placeholder='手机' class="form-control">
+              <div [hidden]="userForm.get('mobile').valid || userForm.get('mobile').pristine">
+                <p [hidden]="!userForm.hasError('mobile', 'mobile')">{{userForm.getError('mobile', 'mobile')?.info}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">
+            <label class="col-md-2 control-label" style="text-align: right;">昵称</label>
+            <div class="col-md-10">
+              <input type="text" formControlName="nickname" placeholder='昵称' class="form-control">
+              <div [hidden]="userForm.get('nickname').valid || userForm.get('nickname').untouched">
+                <p [hidden]="!userForm.hasError('email','email')">邮箱格式不正确</p>
+                <p [hidden]="!userForm.hasError('required','email')">邮箱是必填项</p>
+              </div>
             </div>
           </div>
           <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">

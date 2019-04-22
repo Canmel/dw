@@ -7,7 +7,7 @@ import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import {PaginationModule} from 'ngx-bootstrap';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserstatusPipe} from '../../formater/userstatus.pipe';
 
 @NgModule({
@@ -15,6 +15,7 @@ import {UserstatusPipe} from '../../formater/userstatus.pipe';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     UsersRoutingModule,
     PaginationModule.forRoot()
   ]
