@@ -16,7 +16,6 @@ export class EditComponent implements OnInit {
   private userForm: FormGroup;
 
   validTimeOutEvent: any;
-
   constructor(private fb: FormBuilder, private http: HttpService, private router: Router, private toastr: ToastrService, private routInfo: ActivatedRoute) {
     this.userForm = this.fb.group({
       email: ['', [Validators.required, Validators.email], [this.userNameAsyncValidator]],
@@ -74,5 +73,5 @@ export class EditComponent implements OnInit {
       });
     }, 2000);
     console.log(_this.userForm.get('email'));
-  });
+  })
 }

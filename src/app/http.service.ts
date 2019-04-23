@@ -21,7 +21,9 @@ export class HttpService {
    * @param url 后台接口api 例如：/api/test/6
    */
   public get(url: string, params?: Object): Promise<void | Object> {
-    return this.http.get(url, httpOptions).toPromise().catch(errorResp => {
+    const urlParams = this.parseParams(params);
+    console.log(urlParams);
+    return this.http.get(url + '?' + urlParams, httpOptions).toPromise().catch(errorResp => {
       this.handleError(errorResp);
     });
   }
@@ -36,6 +38,23 @@ export class HttpService {
     return this.http.put(url, params, httpOptions).toPromise().catch(errorResp => {
       this.handleError(errorResp);
     });
+  }
+
+
+  parseParams(data) {
+    try {
+      const tempArr = [];
+      for (const i in data) {
+        const value = encodeURIComponent(data[i]);
+        if (value !== '') {
+          tempArr.push(i + '=' + value);
+        }
+      }
+      const urlParamsStr = tempArr.join('&');
+      return urlParamsStr;
+    } catch (err) {
+      return '';
+    }
   }
 
   // /**

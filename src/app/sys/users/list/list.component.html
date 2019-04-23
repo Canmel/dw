@@ -3,15 +3,15 @@
   <div class="col-md-12">
     <div class="card" style="padding: 10px;">
       <div class="header">
-        <form class="form-inline" role="form" id="searchForm">
+        <form [formGroup]="searchForm" class="form-inline" role="form" id="searchForm" (ngSubmit)="query()">
           <div class="form-group">
-            <input name="name" class="form-control" id="name" placeholder="名称" >
+            <input name="email" formControlName="email" class="form-control" placeholder="邮箱" >
           </div>
           <div class="form-group">
-            <input name="description" class="form-control" id="description" placeholder="备注">
+            <input name="username" formControlName="username" class="form-control" placeholder="工号">
           </div>
           <div class="form-group">
-            <button type="button" (click)="query()" class="btn btn-success">查询</button>
+            <button type="submit" class="btn btn-success">查询</button>
           </div>
           <div style="display: inline-block;float: right;">
             <button type="button"  class="btn btn-success" routerLink="add">新增</button>
