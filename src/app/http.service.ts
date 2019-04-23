@@ -20,8 +20,20 @@ export class HttpService {
    *  GET请求处理（一般用于获取数据）
    * @param url 后台接口api 例如：/api/test/6
    */
-  public get(url: string): Promise<void | Object> {
+  public get(url: string, params?: Object): Promise<void | Object> {
     return this.http.get(url, httpOptions).toPromise().catch(errorResp => {
+      this.handleError(errorResp);
+    });
+  }
+
+  public post(url: string, params?: Object): Promise<void | Object> {
+    return this.http.post(url, params, httpOptions).toPromise().catch(errorResp => {
+      this.handleError(errorResp);
+    });
+  }
+
+  public put(url: string, params?: Object): Promise<void | Object> {
+    return this.http.put(url, params, httpOptions).toPromise().catch(errorResp => {
       this.handleError(errorResp);
     });
   }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpService} from '../../../http.service';
+import {UrlCollecton} from '../../../public/url-collection';
 
 @Component({
   selector: 'app-list',
@@ -19,7 +20,7 @@ export class ListComponent implements OnInit {
   }
 
   query() {
-    this.http.get('/system/sysUser').then(resp => {
+    this.http.get(UrlCollecton.system.users.list).then(resp => {
       console.log(resp);
       this.page = resp['data'];
     });

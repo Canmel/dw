@@ -4,6 +4,8 @@ import 'rxjs/observable/of';
 import {HttpService} from '../../../http.service';
 import {Observable, Observer} from 'rxjs';
 import {UrlCollecton} from '../../../public/url-collection';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-add',
@@ -16,7 +18,7 @@ export class AddComponent implements OnInit {
 
   validTimeOutEvent: any;
 
-  constructor(private fb: FormBuilder, private http: HttpService) {
+  constructor(private fb: FormBuilder, private http: HttpService, private router: Router, private toastr: ToastrService) {
     this.userForm = this.fb.group({
       email: ['', [Validators.required, Validators.email], [this.userNameAsyncValidator]],
       mobile: ['', this.mobileValidator],
@@ -29,10 +31,6 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
-  save() {
-    alert();
-  }
-
   mobileValidator(control: FormControl): any {
 
     const mobileReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
@@ -42,12 +40,13 @@ export class AddComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.userForm.get('email').valid);
-    console.log(this.userForm.get('password').valid);
-    console.log(this.userForm.get('mobile').valid);
-    console.log(this.userForm.get('nickname').valid);
     if (this.userForm.valid) {
-      alert(1);
+      this.http.post(UrlCollecton.system.users.add, this.userForm.value).then(resp => {
+        this.toastr.success(resp['msg'], '成功');
+        this.router.navigate([UrlCollecton.pages.users.list]);
+      });
+    } else {
+      this.toastr.warning('请核对填写信息是否正确与完整', '警告');
     }
   }
 
@@ -58,9 +57,7 @@ export class AddComponent implements OnInit {
     }
     this.validTimeOutEvent = setTimeout(function () {
       _this.http.get(UrlCollecton.session.userInfo).then(resp => {
-        // observer.next(null);
-
-        observer.next({error: true, duplicated: true});
+        observer.next(null);
         observer.complete();
         console.log(_this.userForm.get('email'));
       }, resp => {
