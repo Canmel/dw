@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {Observable, Observer} from 'rxjs';
+import 'rxjs/observable/of';
 import {HttpService} from '../../../http.service';
+import {Observable, Observer} from 'rxjs';
 import {UrlCollecton} from '../../../public/url-collection';
 
 @Component({
@@ -20,7 +21,7 @@ export class AddComponent implements OnInit {
       email: ['', [Validators.required, Validators.email], [this.userNameAsyncValidator]],
       mobile: ['', this.mobileValidator],
       password: ['', [Validators.minLength(6), Validators.required]],
-      nickname: ['', Validators.minLength(6)],
+      nickname: ['', [Validators.maxLength(6), Validators.required]],
       username: ['', [Validators.maxLength(10), Validators.required]]
     });
   }
@@ -40,15 +41,6 @@ export class AddComponent implements OnInit {
   }
 
 
-  equalValidator(group: FormGroup): any {
-
-    const password = group.get('password') as FormControl;
-    const pconfirm = group.get('pconfirm') as FormControl;
-
-    const isEqule: boolean = (password.value === pconfirm.value);
-    return isEqule ? null : {equal: {info: '两次密码不一致'}};
-  }
-
   onSubmit() {
     console.log(this.userForm.get('email').valid);
     console.log(this.userForm.get('password').valid);
@@ -66,15 +58,17 @@ export class AddComponent implements OnInit {
     }
     this.validTimeOutEvent = setTimeout(function () {
       _this.http.get(UrlCollecton.session.userInfo).then(resp => {
-        console.log(resp);
-        if (resp['httpStatus'] === 200) {
-          observer.next(null);
-        }
+        // observer.next(null);
+
+        observer.next({error: true, duplicated: true});
         observer.complete();
+        console.log(_this.userForm.get('email'));
       }, resp => {
         observer.next({error: true, duplicated: true});
         observer.complete();
+        console.log(this.userForm.get('email'));
       });
     }, 2000);
+    console.log(_this.userForm.get('email'));
   })
 }

@@ -47,13 +47,9 @@
         </table>
 
       </div>
-      <div class="btn-group">
-
-
+      <div class="btn-group" style="margin: auto;">
         <pagination [totalItems]="page.total" [(ngModel)]="page.nextPage" (pageChanged)="pageChanged($event)"
                     previousText="上一页" nextText="下一页"></pagination>
-
-
       </div>
     </div>
   </div>
