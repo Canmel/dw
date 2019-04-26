@@ -16,9 +16,11 @@ export class EditComponent implements OnInit {
   private userForm: FormGroup;
 
   validTimeOutEvent: any;
+
   constructor(private fb: FormBuilder, private http: HttpService, private router: Router, private toastr: ToastrService, private routInfo: ActivatedRoute) {
     this.userForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email], [this.userNameAsyncValidator]],
+      uid: ['', [], []],
+      email: ['', [], []],
       mobile: ['', this.mobileValidator],
       password: ['', [Validators.minLength(6), Validators.required]],
       nickname: ['', [Validators.maxLength(6), Validators.required]],
@@ -56,22 +58,4 @@ export class EditComponent implements OnInit {
     }
   }
 
-  userNameAsyncValidator = (control: FormControl) => Observable.create((observer: Observer<ValidationErrors>) => {
-    const _this = this;
-    if (this.validTimeOutEvent) {
-      clearTimeout(this.validTimeOutEvent);
-    }
-    this.validTimeOutEvent = setTimeout(function () {
-      _this.http.get(UrlCollecton.session.userInfo).then(resp => {
-        observer.next(null);
-        observer.complete();
-        console.log(_this.userForm.get('email'));
-      }, resp => {
-        observer.next({error: true, duplicated: true});
-        observer.complete();
-        console.log(this.userForm.get('email'));
-      });
-    }, 2000);
-    console.log(_this.userForm.get('email'));
-  })
 }

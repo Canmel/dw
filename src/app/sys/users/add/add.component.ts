@@ -20,7 +20,7 @@ export class AddComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpService, private router: Router, private toastr: ToastrService) {
     this.userForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email], [this.userNameAsyncValidator]],
+      email: ['', [Validators.required, Validators.email], [this.emailAsyncValidator]],
       mobile: ['', this.mobileValidator],
       password: ['', [Validators.minLength(6), Validators.required]],
       nickname: ['', [Validators.maxLength(6), Validators.required]],
@@ -50,7 +50,7 @@ export class AddComponent implements OnInit {
     }
   }
 
-  userNameAsyncValidator = (control: FormControl) => Observable.create((observer: Observer<ValidationErrors>) => {
+  emailAsyncValidator = (control: FormControl) => Observable.create((observer: Observer<ValidationErrors>) => {
     const _this = this;
     if (this.validTimeOutEvent) {
       clearTimeout(this.validTimeOutEvent);

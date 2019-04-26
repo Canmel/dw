@@ -40,6 +40,17 @@ export class HttpService {
     });
   }
 
+  public delete(url: string, param: Object): Promise<void | Object> {
+    if (url.endsWith('/')) {
+      url += param;
+    } else {
+      url += '/' + param;
+    }
+    return this.http.delete(url, httpOptions).toPromise().catch(errorResp => {
+      this.handleError(errorResp);
+    });
+  }
+
 
   parseParams(data) {
     try {

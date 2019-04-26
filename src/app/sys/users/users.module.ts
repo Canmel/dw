@@ -6,7 +6,7 @@ import { UsersComponent } from './users.component';
 import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
-import {PaginationModule} from 'ngx-bootstrap';
+import {ModalModule, PaginationModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserstatusPipe} from '../../formater/userstatus.pipe';
 
@@ -17,7 +17,8 @@ import {UserstatusPipe} from '../../formater/userstatus.pipe';
     FormsModule,
     ReactiveFormsModule,
     UsersRoutingModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ]
 })
 export class UsersModule { }

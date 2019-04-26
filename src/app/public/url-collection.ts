@@ -8,7 +8,8 @@ export const UrlCollecton = {
       list: `/system/sysUser`,
       add: `/system/sysUser`,
       update: `/system/sysUser`,
-      detail: `/system/sysUser/`
+      detail: `/system/sysUser/`,
+      delete: `/system/sysUser/`
     }
   },
   pages: {

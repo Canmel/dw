@@ -3,10 +3,11 @@
     <div class="card" style="padding: 10px;">
       <div class="content table-responsive table-full-width">
         <form [formGroup]="userForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+          <input type="hidden" formControlName="uid"/>
           <div class="form-group row no-horizontal-margin" style="margin-left: 0px;margin-right: 0px;">
             <label class="col-md-2 control-label" style="text-align: right;">邮箱</label>
             <div class="col-md-8">
-              <input type="email" formControlName="email" placeholder='邮箱' class="form-control">
+              <input type="email" formControlName="email" placeholder='邮箱' [readonly]="true" class="form-control">
               <div style="color: red;" [hidden]="userForm.get('email').untouched">
                 <p [hidden]="!userForm.hasError('email', 'email')"><i class="fa fa-exclamation-triangle" style="color: chocolate;"></i>邮箱格式不正确</p>
                 <p [hidden]="!userForm.hasError('required','email')"><i class="fa fa-exclamation-triangle" style="color: chocolate;"></i>邮箱是必填项</p>
